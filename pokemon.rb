@@ -34,4 +34,25 @@ class Pokemon
   def how_many_moves
     @attacks.size
   end
+
+  def strongest_attack
+    attack = @attacks.max_by { |k, v| v }
+    Hash[attack[0], attack[1]]
+  end
+
+  def print_strongest_attack
+    attack = @attacks.max_by { |k, v| v }
+    "#{@name.capitalize}'s strongest attack is #{attack[0]} at #{attack[1]}"
+  end
+
+  def weakest_attack
+    attack = @attacks.min_by { |k, v| v }
+    Hash[attack[0], attack[1]]
+  end
+
+  def print_weakest_attack
+    attack = @attacks.min_by { |k, v| v }
+    "#{@name.capitalize}'s weakest attack is #{attack[0]} at #{attack[1]}"
+  end
+
 end

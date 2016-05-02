@@ -68,10 +68,41 @@ class PokemonTest < Minitest::Test
   end
 
   def test_strongest_attack
-    
-
+    pikachu = Pokemon.new('pikachu')
+    pikachu.learn_this_attack('arm thrust', 15)
+    pikachu.learn_this_attack('earthquake', 100)
+    pikachu.learn_this_attack('slash', 30)
+    assert_equal ({'earthquake' => 100}), pikachu.strongest_attack
+    pikachu.its_super_effective
+    assert_equal ({'earthquake' => 200}), pikachu.strongest_attack
   end
 
+  def test_print_strongest_attack
+    pikachu = Pokemon.new('pikachu')
+    pikachu.learn_this_attack('arm thrust', 15)
+    pikachu.learn_this_attack('earthquake', 100)
+    pikachu.learn_this_attack('slash', 30)
+    pikachu.its_super_effective
+    assert_equal "Pikachu's strongest attack is earthquake at 200", pikachu.print_strongest_attack
+  end
 
+  def test_weakest_attack
+    pikachu = Pokemon.new('pikachu')
+    pikachu.learn_this_attack('arm thrust', 15)
+    pikachu.learn_this_attack('earthquake', 100)
+    pikachu.learn_this_attack('slash', 30)
+    assert_equal ({'arm thrust' => 15}), pikachu.weakest_attack
+    pikachu.its_super_effective
+    assert_equal ({'arm thrust' => 30}), pikachu.weakest_attack
+  end
+
+  def test_print_weakest_attack
+    pikachu = Pokemon.new('pikachu')
+    pikachu.learn_this_attack('arm thrust', 15)
+    pikachu.learn_this_attack('earthquake', 100)
+    pikachu.learn_this_attack('slash', 30)
+    pikachu.its_super_effective
+    assert_equal "Pikachu's weakest attack is arm thrust at 30", pikachu.print_weakest_attack
+  end
 
 end
